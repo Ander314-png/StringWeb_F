@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StringWeb — Catálogo de Servicios</title>
+   <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="container nav-wrap">
+                <a class="brand" href="index.html">
+                    <span class="brand-name">String<span>Web</span></span>
+                </a>
+                <nav class="main-nav">
+                    <a href="index.html">Inicio</a>
+                    <a href="catalogo.html" class="active">Catálogo</a>
+                    <a href="contacto.html">Contacto</a>
+                    <button class="theme-toggle" id="theme-btn">🌙 / ☀️</button>
+                    <button class="nav-cta" id="open-cart-btn" style="cursor:pointer;">🛒 Carrito (<span id="cart-counter">0</span>)</button>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container section-pad">
+            <div class="section-heading">
+                <div>
+                    <div class="section-label">Tienda Web</div>
+                    <h2>Nuestros Servicios y <span>Soluciones Digitales</span></h2>
+                </div>
+                <p>Elige el plan ideal para tu negocio. Añádelo al carrito para gestionar tu cotización o generar tu factura en PDF.</p>
+            </div>
+
+            <div class="service-grid">
+                <!-- Servicio 1 -->
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">↗</div>
+                        <h3>Página Web Básica</h3>
+                        <p>Ideal para marcas personales y portafolios sencillos con presencia profesional.</p>
+                    </div>
+                    <div>
+                        <div class="service-price">$350.000 COP</div>
+                        <button class="btn btn-primary" style="width:100%; padding:10px;" onclick="agregarAlCarrito('Página Web Básica', 350000)">Añadir al Carrito</button>
+                    </div>
+                    <span class="service-number">01</span>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">⌁</div>
+                        <h3>Página Web Empresarial</h3>
+                        <p>Diseño avanzado multipágina para potenciar negocios consolidados.</p>
+                    </div>
+                    <div>
+                        <div class="service-price">$800.000 COP</div>
+                        <button class="btn btn-primary" style="width:100%; padding:10px;" onclick="agregarAlCarrito('Página Web Empresarial', 800000)">Añadir al Carrito</button>
+                    </div>
+                    <span class="service-number">02</span>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">◎</div>
+                        <h3>Tienda Web E-commerce</h3>
+                        <p>Vende tus productos en línea de forma automatizada y segura.</p>
+                    </div>
+                    <div>
+                        <div class="service-price">$1.500.000 COP</div>
+                        <button class="btn btn-primary" style="width:100%; padding:10px;" onclick="agregarAlCarrito('Tienda Web E-commerce', 1500000)">Añadir al Carrito</button>
+                    </div>
+                    <span class="service-number">03</span>
+                </div>
+
+                <!-- Servicio 4 -->
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">↻</div>
+                        <h3>Plataforma Gastronómica</h3>
+                        <p>Menú digital y pedidos directos a WhatsApp para restaurantes.</p>
+                    </div>
+                    <div>
+                        <div class="service-price">$950.000 COP</div>
+                        <button class="btn btn-primary" style="width:100%; padding:10px;" onclick="agregarAlCarrito('Plataforma Gastronómica', 950000)">Añadir al Carrito</button>
+                    </div>
+                    <span class="service-number">04</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- DRAWER DE CARRITO DESLIZABLE -->
+        <div class="cart-drawer-overlay" id="cart-overlay"></div>
+        <div class="cart-drawer" id="cart-drawer">
+            <div class="cart-header">
+                <h3>Tu Carrito de Compras</h3>
+                <button class="close-cart" id="close-cart">&times;</button>
+            </div>
+            <ul class="cart-items" id="cart-items-list">
+                <!-- Se llena con JS -->
+            </ul>
+            <div class="cart-footer">
+                <div class="cart-total-row">
+                    <span>Total:</span>
+                    <span id="cart-total-amount">$0 COP</span>
+                </div>
+                <button class="btn btn-primary btn-full" style="margin-bottom: 8px;" onclick="finalizarCompraWhatsApp()">Finalizar por WhatsApp 🚀</button>
+                <button class="btn btn-light btn-full" onclick="generarFacturaPDF()">Generar Factura PDF 📄</button>
+            </div>
+        </div>
+
+        <!-- ÁREA PARA IMPRESIÓN LIMPIA DE FACTURA PDF -->
+        <div id="invoice-print-area" class="print-only">
+            <div style="font-family: Arial, sans-serif; padding: 20px; color: #000;">
+                <h1 style="color: #6d28d9; margin-bottom: 5px;">StringWeb</h1>
+                <p style="margin: 0; color: #555;">Desarrollo Web Profesional — Chiquinquirá, Boyacá</p>
+                <hr style="border: 1px solid #ddd; margin: 20px 0;">
+                <h3>Factura Proforma / Cotización</h3>
+                <p><strong>Fecha:</strong> <span id="invoice-date"></span></p>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                    <thead>
+                        <tr style="background: #f3e8ff; text-align: left;">
+                            <th style="padding: 10px; border: 1px solid #ddd;">Servicio</th>
+                            <th style="padding: 10px; border: 1px solid #ddd;">Cant.</th>
+                            <th style="padding: 10px; border: 1px solid #ddd;">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="invoice-table-body">
+                        <!-- Items -->
+                    </tbody>
+                </table>
+                <h3 style="text-align: right; margin-top: 20px;" id="invoice-total-text">Total: $0 COP</h3>
+                <p style="margin-top: 40px; font-size: 12px; color: #777; text-align: center;">Gracias por confiar en StringWeb. Contacto: 3108111774</p>
+            </div>
+        </div>
+
+        <footer class="site-footer">
+            <div class="container footer-bottom"><span>© <span id="year"></span> StringWeb</span><span>Catálogo Cyber Violet</span></div>
+        </footer>
+
+        <a class="floating-whatsapp" href="https://wa.me/573108111774?text=Hola%20StringWeb,%20estoy%20viendo%20el%20catálogo." target="_blank">WA</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

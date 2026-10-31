@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StringWeb — Contacto</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="container nav-wrap">
+                <a class="brand" href="index.html">
+                    <span class="brand-name">String<span>Web</span></span>
+                </a>
+                <nav class="main-nav">
+                    <a href="index.html">Inicio</a>
+                    <a href="catalogo.html">Catálogo</a>
+                    <a href="contacto.html" class="active">Contacto</a>
+                    <button class="theme-toggle" id="theme-btn">🌙 / ☀️</button>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container section-pad">
+            <div class="contact-panel">
+                <div class="contact-copy">
+                    <div class="section-label light">Empecemos</div>
+                    <h2>Cuéntanos sobre tu negocio. <span>Hagamos realidad tu proyecto.</span></h2>
+                    <p>Llena el formulario y envíanos tu mensaje directo a nuestro WhatsApp sin rodeos.</p>
+                    <div class="contact-notes">
+                        <span>Chiquinquirá, Boyacá</span>
+                        <span>Atención cercana</span>
+                        <span>Cyber Violet Pro</span>
+                    </div>
+                </div>
+                <form class="contact-form" id="contact-form">
+                    <div class="field-row">
+                        <label>Tu nombre<input name="name" type="text" placeholder="Ej. Juan Pérez" required /></label>
+                        <label>Tu negocio<input name="business" type="text" placeholder="Ej. Tienda JR" required /></label>
+                    </div>
+                    <div class="field-row">
+                        <label>WhatsApp<input name="whatsapp" type="tel" placeholder="300 000 0000" required /></label>
+                        <label>Correo<input name="email" type="email" placeholder="tu@email.com" /></label>
+                    </div>
+                    <label>¿Tu negocio ya tiene página web?
+                        <select name="hasWebsite">
+                            <option value="no">No, todavía no</option>
+                            <option value="si">Sí, pero quiero mejorarla</option>
+                            <option value="otra">Tengo una, pero quiero empezar de nuevo</option>
+                        </select>
+                    </label>
+                    <label>Cuéntanos un poco sobre lo que quieres mostrar<textarea name="message" rows="4" placeholder="Productos, servicios, ideas..."></textarea></label>
+                    <button class="btn btn-primary btn-full" type="submit">Enviar mensaje por WhatsApp 🚀</button>
+                    <p class="form-note">Se abrirá WhatsApp de inmediato con tu mensaje redactado hacia el equipo.</p>
+                    <div class="form-success" id="form-success" hidden></div>
+                </form>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container footer-bottom"><span>© <span id="year"></span> StringWeb</span><span>Contacto Seguro</span></div>
+        </footer>
+
+        <a class="floating-whatsapp" href="https://wa.me/573108111774?text=Hola%20StringWeb" target="_blank">WA</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
