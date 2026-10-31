@@ -216,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
             navLinks.classList.toggle("active");
         });
 
-        // Cierra el menú al hacer clic en cualquier enlace
+        // Cierra el menú automáticamente al hacer clic en cualquier opción
         navLinks.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
                 navLinks.classList.remove("active");

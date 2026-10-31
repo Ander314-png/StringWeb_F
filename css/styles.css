@@ -275,13 +275,13 @@ h1 span { color: var(--primary); }
         gap: 0;
     }
 }
-/* --- MENÚ HAMBURGUESA Y NAVEGACIÓN MÓVIL --- */
+/* --- ESTILOS MÓVILES DEFINITIVOS (MENÚ HAMBURGUESA Y DISTRIBUCIÓN) --- */
 .menu-toggle {
     display: none;
     flex-direction: column;
     justify-content: space-between;
-    width: 30px;
-    height: 21px;
+    width: 28px;
+    height: 20px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -308,6 +308,7 @@ h1 span { color: var(--primary); }
         padding: 15px 20px;
     }
 
+    /* Menú desplegable oculto por defecto */
     .nav-links {
         position: absolute;
         top: 100%;
@@ -317,8 +318,8 @@ h1 span { color: var(--primary); }
         backdrop-filter: blur(12px);
         flex-direction: column;
         align-items: center;
-        gap: 20px;
-        padding: 30px 0;
+        gap: 18px;
+        padding: 0;
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.35s ease-in-out, padding 0.35s ease;
@@ -326,14 +327,53 @@ h1 span { color: var(--primary); }
         z-index: 1001;
     }
 
+    /* Clase que activa el despliegue del menú hamburguesa */
     .nav-links.active {
-        max-height: 350px;
-        padding: 30px 0;
+        max-height: 320px;
+        padding: 25px 0;
     }
 
     .nav-actions {
         display: flex;
         align-items: center;
         gap: 15px;
+    }
+
+    /* Corrección del Hero y Mockups en móviles */
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        min-height: auto;
+    }
+    
+    .hero-copy h1 {
+        font-size: 2.3rem;
+    }
+
+    .hero-visual {
+        display: none !important;
+    }
+
+    /* Servicios a 1 sola columna */
+    .service-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+
+    /* Corrección de la distribución del panel de contacto en celulares */
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 25px;
+    }
+
+    .difference-panel, .contact-panel {
+        padding: 30px 18px;
+        border-radius: 20px;
+        width: 100%;
+    }
+
+    .field-row {
+        grid-template-columns: 1fr;
+        gap: 0;
     }
 }
