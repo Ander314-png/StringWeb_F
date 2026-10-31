@@ -240,42 +240,31 @@ h1 span { color: var(--primary); }
         padding: 20px;
     }
 }
-/* --- CORRECCIÓN MAGNÍFICA PARA VERSIÓN MÓVIL / CELULAR --- */
+/* --- VERSIÓN MÓVIL OPTIMIZADA Y LIMPIA --- */
 @media (max-width: 760px) {
     .hero-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 25px;
         min-height: auto;
+        padding-top: 10px;
     }
     
     .hero-copy h1 {
-        font-size: 2.7rem;
+        font-size: 2.4rem;
+        line-height: 1.05;
     }
 
-    /* Hacemos que el mockup en celular no flote de forma loca, sino que se adapte limpio */
+    /* Ocultamos el mockup pesado en móviles para ganar limpieza y velocidad visual */
     .hero-visual {
-        min-height: 320px;
-        width: 100%;
-        margin-top: 10px;
+        display: none !important;
     }
 
-    .browser-card {
-        position: relative !important;
-        width: 100% !important;
-        transform: none !important;
-        left: 0 !important;
-        top: 0 !important;
+    /* Forzamos que los servicios se muestren en 1 sola columna ordenada */
+    .service-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
     }
 
-    .card-back {
-        display: none; /* Ocultamos la tarjeta trasera en móviles para ganar espacio y limpieza */
-    }
-
-    .floating-badge {
-        display: none; /* Ocultamos los badges flotantes en celular para que no estorben */
-    }
-
-    /* Ajuste de paneles de contacto y diferencia en móviles */
     .difference-panel, .contact-panel {
         padding: 35px 20px;
         border-radius: 20px;
