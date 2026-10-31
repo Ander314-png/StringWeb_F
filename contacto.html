@@ -8,19 +8,31 @@
 </head>
 <body>
     <div class="site-shell">
-        <header class="site-header">
-            <div class="container nav-wrap">
-                <a class="brand" href="index.html">
-                    <span class="brand-name">String<span>Web</span></span>
-                </a>
-                <nav class="main-nav">
-                    <a href="index.html">Inicio</a>
-                    <a href="catalogo.html">Catálogo</a>
-                    <a href="contacto.html" class="active">Contacto</a>
-                    <button class="theme-toggle" id="theme-btn">🌙 / ☀️</button>
-                </nav>
+       <header class="site-header">
+    <div class="nav-container">
+        <a href="index.html" class="logo">StringWeb</a>
+        
+        <!-- Botón Hamburguesa -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="contacto.html">Contacto</a>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-btn" aria-label="Cambiar tema">
+                    <span class="moon">🌙</span>
+                    <span class="sun">☀️</span>
+                </button>
+                <a href="catalogo.html#cart" class="cart-btn" id="open-cart-btn">Carrito (0)</a>
             </div>
-        </header>
+        </div>
+    </div>
+</header>
 
         <main class="container section-pad">
             <div class="contact-panel">
