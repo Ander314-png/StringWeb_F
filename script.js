@@ -1,21 +1,39 @@
-/* --- CONFIGURACIÓN GLOBAL --- */
+/* --- CONFIGURACIÓN GLOBAL DE STRINGWEB --- */
 const STRINGWEB_CONFIG = {
     whatsappNumber: "573108111774",
     whatsappBase: "https://wa.me/"
 };
 
-// Año en footer
-document.getElementById("year") && (document.getElementById("year").textContent = new Date().getFullYear());
-
-// Menú Hamburguesa Móvil
-const menuToggle = document.querySelector(".menu-toggle");
-const nav = document.querySelector(".main-nav");
-menuToggle?.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
+// Año dinámico en footer
+document.addEventListener("DOMContentLoaded", () => {
+    const yearEl = document.getElementById("year");
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
 });
 
-// Animaciones Reveal al hacer scroll
+// --- MENÚ HAMBURGUESA MÓVIL DEFINITIVO ---
+document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("active");
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        // Cierra el menú automáticamente al hacer clic en cualquier opción
+        navLinks.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("active");
+                menuToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+    }
+});
+
+// --- ANIMACIONES REVEAL AL HACER SCROLL ---
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -24,19 +42,21 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, { threshold: 0.12 });
+
 document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
-// MODO OSCURO / CLARO (Cyber Violet Toggle)
+// --- MODO OSCURO / CLARO (Cyber Violet Toggle) ---
 const themeBtn = document.getElementById("theme-btn");
 if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark-mode");
 }
+
 themeBtn?.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
     localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
 });
 
-// PARTÍCULAS.JS (Solo si existe el contenedor en el inicio)
+// --- PARTÍCULAS.JS (Fondo interactivo de inicio) ---
 if (document.getElementById("particles-js")) {
     particlesJS("particles-js", {
         "particles": {
@@ -54,7 +74,7 @@ if (document.getElementById("particles-js")) {
     });
 }
 
-// CARRITO DE COMPRAS EDITABLE (Catálogo)
+// --- CARRITO DE COMPRAS EDITABLE (Catálogo) ---
 let carrito = JSON.parse(localStorage.getItem("carrito_stringweb")) || [];
 
 const cartDrawer = document.getElementById("cart-drawer");
@@ -62,17 +82,20 @@ const cartOverlay = document.getElementById("cart-overlay");
 const openCartBtn = document.getElementById("open-cart-btn");
 const closeCartBtn = document.getElementById("close-cart");
 
-openCartBtn?.addEventListener("click", () => {
-    cartDrawer.classList.add("active");
-    cartOverlay.classList.add("active");
+openCartBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    cartDrawer?.classList.add("active");
+    cartOverlay?.classList.add("active");
 });
+
 closeCartBtn?.addEventListener("click", () => {
-    cartDrawer.classList.remove("active");
-    cartOverlay.classList.remove("active");
+    cartDrawer?.classList.remove("active");
+    cartOverlay?.classList.remove("active");
 });
+
 cartOverlay?.addEventListener("click", () => {
-    cartDrawer.classList.remove("active");
-    cartOverlay.classList.remove("active");
+    cartDrawer?.classList.remove("active");
+    cartOverlay?.classList.remove("active");
 });
 
 function guardarCarrito() {
@@ -88,8 +111,8 @@ function agregarAlCarrito(nombre, precio) {
         carrito.push({ nombre, precio, cantidad: 1 });
     }
     guardarCarrito();
-    cartDrawer.classList.add("active");
-    cartOverlay.classList.add("active");
+    cartDrawer?.classList.add("active");
+    cartOverlay?.classList.add("active");
 }
 
 function cambiarCantidad(index, delta) {
@@ -162,14 +185,18 @@ function finalizarCompraWhatsApp() {
     window.open(`${STRINGWEB_CONFIG.whatsappBase}${STRINGWEB_CONFIG.whatsappNumber}?text=${mensaje}`, "_blank");
 }
 
-// GENERAR FACTURA EN PDF (Ventana de impresión limpia)
+// --- GENERAR FACTURA EN PDF (Ventana de impresión limpia) ---
 function generarFacturaPDF() {
     if (carrito.length === 0) {
         alert("Añade servicios al carrito antes de generar la factura.");
         return;
     }
-    document.getElementById("invoice-date").textContent = new Date().toLocaleDateString();
+    const invoiceDate = document.getElementById("invoice-date");
+    if (invoiceDate) invoiceDate.textContent = new Date().toLocaleDateString();
+    
     const tbody = document.getElementById("invoice-table-body");
+    if (!tbody) return;
+    
     tbody.innerHTML = "";
     let total = 0;
 
@@ -185,11 +212,12 @@ function generarFacturaPDF() {
         tbody.appendChild(tr);
     });
 
-    document.getElementById("invoice-total-text").textContent = `Total: $${total.toLocaleString()} COP`;
+    const invoiceTotalText = document.getElementById("invoice-total-text");
+    if (invoiceTotalText) invoiceTotalText.textContent = `Total: $${total.toLocaleString()} COP`;
     window.print();
 }
 
-// Formulario de Contacto
+// --- FORMULARIO DE CONTACTO (Conexión limpia a WhatsApp) ---
 const contactForm = document.getElementById("contact-form");
 const successBox = document.getElementById("form-success");
 
@@ -198,29 +226,12 @@ contactForm?.addEventListener("submit", (e) => {
     const formData = new FormData(contactForm);
     const data = Object.fromEntries(formData.entries());
 
-    const texto = `Hola StringWeb 👋,%0AMi nombre es *${data.name}* (${data.business}).%0AWhatsApp: ${data.whatsapp}%0ACorreo: ${data.email || "No indicó"}%0ATiene web: ${data.hasWebsite}%0A%0AMensaje: ${data.message || "Quiero orientación."}`;
+    const texto = `Hola StringWeb 👋,%0AMi nombre es *${data.name || "Cliente"}* (${data.business || "Mi negocio"}).%0AWhatsApp: ${data.whatsapp || "No indicó"}%0ACorreo: ${data.email || "No indicó"}%0ATiene web: ${data.hasWebsite || "No especifica"}%0A%0AMensaje: ${data.message || "Quiero orientación."}`;
+    
     window.open(`${STRINGWEB_CONFIG.whatsappBase}${STRINGWEB_CONFIG.whatsappNumber}?text=${texto}`, "_blank");
     
     if (successBox) {
         successBox.hidden = false;
         successBox.textContent = "¡Perfecto! Se ha abierto WhatsApp con tu mensaje listo.";
-    }
-});
-// --- CONTROL DE MENÚ HAMBURGUESA MÓVIL ---
-document.addEventListener("DOMContentLoaded", () => {
-    const menuToggle = document.getElementById("menu-toggle");
-    const navLinks = document.getElementById("nav-links");
-
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener("click", () => {
-            navLinks.classList.toggle("active");
-        });
-
-        // Cierra el menú automáticamente al hacer clic en cualquier opción
-        navLinks.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", () => {
-                navLinks.classList.remove("active");
-            });
-        });
     }
 });
