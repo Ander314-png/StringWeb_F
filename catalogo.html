@@ -4,35 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>StringWeb — Catálogo de Servicios</title>
-   <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
     <div class="site-shell">
-       <header class="site-header">
-    <div class="nav-container">
-        <a href="index.html" class="logo">StringWeb</a>
-        
-        <!-- Botón Hamburguesa Móvil -->
-        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-
-        <div class="nav-links" id="nav-links">
-            <a href="index.html">Inicio</a>
-            <a href="catalogo.html">Catálogo</a>
-            <a href="contacto.html">Contacto</a>
-            <div class="nav-actions">
-                <button id="theme-toggle" class="theme-btn" aria-label="Cambiar tema">
-                    <span class="moon">🌙</span>
-                    <span class="sun">☀️</span>
+        <header class="site-header">
+            <div class="nav-container">
+                <a href="index.html" class="logo">StringWeb</a>
+                
+                <!-- Botón Hamburguesa Móvil -->
+                <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </button>
-                <a href="catalogo.html#cart" class="cart-btn" id="open-cart-btn">Carrito (0)</a>
+
+                <div class="nav-links" id="nav-links">
+                    <a href="index.html">Inicio</a>
+                    <a href="catalogo.html">Catálogo</a>
+                    <a href="contacto.html">Contacto</a>
+                    <div class="nav-actions">
+                        <button id="theme-btn" class="theme-btn" aria-label="Cambiar tema">
+                            <span class="moon">🌙</span>
+                            <span class="sun">☀️</span>
+                        </button>
+                        <a href="catalogo.html#cart" class="cart-btn" id="open-cart-btn">Carrito (<span id="cart-counter">0</span>)</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</header>
+        </header>
 
         <main class="container section-pad">
             <div class="section-heading">
@@ -151,9 +151,9 @@
             <div class="container footer-bottom"><span>© <span id="year"></span> StringWeb</span><span>Catálogo Cyber Violet</span></div>
         </footer>
 
-        <a class="floating-whatsapp" href="https://wa.me/573108111774?text=Hola%20StringWeb,%20estoy%20viendo%20el%20catálogo." target="_blank">WA</a>
+        <a class="floating-whatsapp" href="https://wa.me/573108111774?text=Hola%20StringWeb,%20estoy%20viendo%20el%20catálogo." target="_blank" aria-label="WhatsApp">WA</a>
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

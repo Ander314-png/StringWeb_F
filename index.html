@@ -11,31 +11,31 @@
 </head>
 <body>
     <div class="site-shell">
-       <header class="site-header">
-    <div class="nav-container">
-        <a href="index.html" class="logo">StringWeb</a>
-        
-        <!-- Botón Hamburguesa Móvil -->
-        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-
-        <div class="nav-links" id="nav-links">
-            <a href="index.html">Inicio</a>
-            <a href="catalogo.html">Catálogo</a>
-            <a href="contacto.html">Contacto</a>
-            <div class="nav-actions">
-                <button id="theme-toggle" class="theme-btn" aria-label="Cambiar tema">
-                    <span class="moon">🌙</span>
-                    <span class="sun">☀️</span>
+        <header class="site-header">
+            <div class="nav-container">
+                <a href="index.html" class="logo">StringWeb</a>
+                
+                <!-- Botón Hamburguesa Móvil -->
+                <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </button>
-                <a href="catalogo.html#cart" class="cart-btn" id="open-cart-btn">Carrito (0)</a>
+
+                <div class="nav-links" id="nav-links">
+                    <a href="index.html">Inicio</a>
+                    <a href="catalogo.html">Catálogo</a>
+                    <a href="contacto.html">Contacto</a>
+                    <div class="nav-actions">
+                        <button id="theme-btn" class="theme-btn" aria-label="Cambiar tema">
+                            <span class="moon">🌙</span>
+                            <span class="sun">☀️</span>
+                        </button>
+                        <a href="catalogo.html#cart" class="cart-btn" id="open-cart-btn">Carrito (<span id="cart-counter">0</span>)</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</header>
+        </header>
 
         <main>
             <section class="hero section-pad">
@@ -146,6 +146,6 @@
 
     <!-- SCRIPT DE PARTÍCULAS -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
