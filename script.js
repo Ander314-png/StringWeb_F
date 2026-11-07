@@ -206,3 +206,79 @@ contactForm?.addEventListener("submit", (e) => {
         successBox.textContent = "¡Perfecto! Se ha abierto WhatsApp con tu mensaje listo.";
     }
 });
+
+/* --- GESTIÓN DE LA GALERÍA (Unsplash) --- */
+const UNSPLASH_ACCESS_KEY = 'TU_ACCESS_KEY_AQUI'; // Reemplaza esto con tu Access Key de Unsplash
+
+const galleryGrid = document.getElementById('galleryGrid');
+const gallerySearchInput = document.getElementById('searchInput');
+const gallerySearchBtn = document.getElementById('searchBtn');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const closeBtn = document.getElementById('closeBtn');
+
+async function buscarFotosGaleria() {
+    if (!galleryGrid) return; // Se ejecuta solo si estamos en galeria.html
+
+    const query = gallerySearchInput ? gallerySearchInput.value : 'boyaca colombia';
+    galleryGrid.innerHTML = '<p style="text-align:center; color:var(--muted); grid-column: 1/-1;">Cargando fotos...</p>';
+
+    try {
+        const response = await fetch(`https://api.unsplash.com/search/photos?page=1&query=${encodeURIComponent(query)}&per_page=12&client_id=${UNSPLASH_ACCESS_KEY}`);
+        const data = await response.json();
+
+        if (!data.results || data.results.length === 0) {
+            galleryGrid.innerHTML = '<p style="text-align:center; color:var(--muted); grid-column: 1/-1;">No se encontraron fotos.</p>';
+            return;
+        }
+
+        galleryGrid.innerHTML = data.results.map(foto => `
+            <div class="gallery-card" data-full="${foto.urls.regular}" style="position: relative; border-radius: 10px; overflow: hidden; background: #18181b; cursor: pointer; aspect-ratio: 4/3;">
+                <img src="${foto.urls.small}" alt="${foto.alt_description || 'Foto de Unsplash'}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                <div class="gallery-overlay" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); opacity: 0; transition: opacity 0.3s ease; display: flex; align-items: flex-end; padding: 1rem; color: #fff; font-size: 0.85rem;">
+                    <span>📷 ${foto.user.name}</span>
+                </div>
+            </div>
+        `).join('');
+
+        // Efecto hover y apertura de Lightbox
+        document.querySelectorAll('.gallery-card').forEach(card => {
+            const overlay = card.querySelector('.gallery-overlay');
+            card.addEventListener('mouseenter', () => overlay.style.opacity = '1');
+            card.addEventListener('mouseleave', () => overlay.style.opacity = '0');
+
+            card.addEventListener('click', () => {
+                const imgUrl = card.getAttribute('data-full');
+                if (lightboxImg && lightbox) {
+                    lightboxImg.src = imgUrl;
+                    lightbox.classList.add('active');
+                }
+            });
+        });
+
+    } catch (error) {
+        console.error('Error al conectar con Unsplash:', error);
+        galleryGrid.innerHTML = '<p style="text-align:center; color:var(--muted); grid-column: 1/-1;">Error al cargar las fotos. Revisa tu Access Key de Unsplash.</p>';
+    }
+}
+
+// Event Listeners para la galería
+if (gallerySearchBtn) {
+    gallerySearchBtn.addEventListener('click', buscarFotosGaleria);
+}
+
+if (gallerySearchInput) {
+    gallerySearchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') buscarFotosGaleria();
+    });
+}
+
+if (closeBtn && lightbox) {
+    closeBtn.addEventListener('click', () => lightbox.classList.remove('active'));
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) lightbox.classList.remove('active');
+    });
+}
+
+// Carga automática al entrar a galeria.html
+document.addEventListener('DOMContentLoaded', buscarFotosGaleria);

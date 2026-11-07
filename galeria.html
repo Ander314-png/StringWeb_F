@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StringWeb — Galería de Proyectos</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="nav-container">
+                <a href="index.html" class="logo">StringWeb</a>
+                
+                <!-- Botón Hamburguesa Móvil -->
+                <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+
+                <div class="nav-links" id="nav-links">
+                    <a href="index.html">Inicio</a>
+                    <a href="catalogo.html">Catálogo</a>
+                    <a href="galeria.html" class="active">Galería</a>
+                    <a href="contacto.html">Contacto</a>
+                    <div class="nav-actions">
+                        <button id="theme-btn" class="theme-btn" aria-label="Cambiar tema">
+                            <span class="moon">🌙</span>
+                            <span class="sun">☀️</span>
+                        </button>
+                        <a href="catalogo.html#cart" class="cart-btn" id="open-cart-btn">Carrito (<span id="cart-counter">0</span>)</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container section-pad">
+            <div class="section-heading">
+                <div>
+                    <div class="section-label">Portafolio Visual</div>
+                    <h2>Muestra de <span>Nuestros Trabajos</span></h2>
+                </div>
+                <p>Explora diseños, maquetas y conceptos visuales creados con la estética Cyber Violet de StringWeb.</p>
+            </div>
+
+            <!-- GALERÍA GRID -->
+            <div class="gallery-grid">
+                
+                <!-- ITEM 1 -->
+                <div class="gallery-item">
+                    <!-- 👇 AQUÍ CAMBIAS EL LINK DE LA IMAGEN DE UNSPLASH -->
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Proyecto Web Empresarial" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h3>Plataforma Corporativa</h3>
+                        <p>Diseño web elegante y moderno</p>
+                    </div>
+                </div>
+
+                <!-- ITEM 2 -->
+                <div class="gallery-item">
+                    <!-- 👇 AQUÍ CAMBIAS EL LINK DE LA IMAGEN DE UNSPLASH -->
+                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" alt="Diseño UI/UX" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h3>Interfaz Cyber Violet</h3>
+                        <p>Experiencia de usuario optimizada</p>
+                    </div>
+                </div>
+
+                <!-- ITEM 3 -->
+                <div class="gallery-item">
+                    <!-- 👇 AQUÍ CAMBIAS EL LINK DE LA IMAGEN DE UNSPLASH -->
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Tienda Online" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h3>E-Commerce Automatizado</h3>
+                        <p>Catálogo interactivo de productos</p>
+                    </div>
+                </div>
+
+                <!-- ITEM 4 -->
+                <div class="gallery-item">
+                    <!-- 👇 AQUÍ CAMBIAS EL LINK DE LA IMAGEN DE UNSPLASH -->
+                    <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=800&q=80" alt="Plataforma Gastronómica" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h3>Menú Digital RestoBar</h3>
+                        <p>Pedidos en línea a WhatsApp</p>
+                    </div>
+                </div>
+
+                <!-- ITEM 5 -->
+                <div class="gallery-item">
+                    <!-- 👇 AQUÍ CAMBIAS EL LINK DE LA IMAGEN DE UNSPLASH -->
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Desarrollo Web" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h3>Código y Rendimiento</h3>
+                        <p>Sitios ultra rápidos y seguros</p>
+                    </div>
+                </div>
+
+                <!-- ITEM 6 -->
+                <div class="gallery-item">
+                    <!-- 👇 AQUÍ CAMBIAS EL LINK DE LA IMAGEN DE UNSPLASH -->
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="Branding Digital" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h3>Identidad de Marca</h3>
+                        <p>Presencia digital profesional</p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container footer-bottom"><span>© <span id="year"></span> StringWeb</span><span>Galería Cyber Violet</span></div>
+        </footer>
+
+        <a class="floating-whatsapp" href="https://wa.me/573108111774?text=Hola%20StringWeb,%20estoy%20viendo%20la%20galería." target="_blank" aria-label="WhatsApp">WA</a>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
