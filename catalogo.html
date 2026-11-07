@@ -8,19 +8,32 @@
 </head>
 <body>
     <div class="site-shell">
-        <header class="site-header">
+        <header class="site-header" id="top">
             <div class="container nav-wrap">
-                <a class="brand" href="index.html">
+                <a class="brand" href="index.html" aria-label="StringWeb, inicio">
+                    <span class="brand-mark" aria-hidden="true">
+                        <svg viewBox="0 0 52 40" role="img">
+                            <path d="M6 28C11 10 23 7 31 17C38 26 37 33 46 30" class="thread-line" />
+                            <path d="M16 12h18a5 5 0 0 1 5 5v11a5 5 0 0 1-5 5H16a5 5 0 0 1-5-5V17a5 5 0 0 1 5-5Z" class="page-outline" />
+                            <circle cx="16" cy="17" r="1.65" class="thread-dot" />
+                            <circle cx="22" cy="17" r="1.65" class="thread-dot" />
+                            <circle cx="28" cy="17" r="1.65" class="thread-dot" />
+                        </svg>
+                    </span>
                     <span class="brand-name">String<span>Web</span></span>
                 </a>
-              <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
-                    <a href="index.html" class="active">Inicio</a>
-                    <a href="catalogo.html">Catálogo</a>
-                    <a href="galeria.html">Galería</a> <!-- Dagiti naidagdag ditoy -->
+
+                <!-- Botón hamburguesa móvil -->
+                <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
+                    <span></span><span></span><span></span>
+                </button>
+
+                <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
+                    <a href="index.html">Inicio</a>
+                    <a href="catalogo.html" class="active">Catálogo</a>
+                    <a href="galeria.html">Galería</a>
                     <a href="contacto.html">Contacto</a>
-                    <button class="theme-toggle" id="theme-btn">🌙 / ☀️</button>
-                    <a href="catalogo.html" class="nav-cta">Ver Servicios</a>
-            
+                    <button class="theme-toggle" id="theme-btn" aria-label="Cambiar tema">🌙 / ☀️</button>
                     <button class="nav-cta" id="open-cart-btn" style="cursor:pointer;">🛒 Carrito (<span id="cart-counter">0</span>)</button>
                 </nav>
             </div>
@@ -114,7 +127,7 @@
             </div>
         </div>
 
-       <!-- ÁREA PARA IMPRESIÓN LIMPIA DE FACTURA PDF -->
+        <!-- ÁREA PARA IMPRESIÓN LIMPIA DE FACTURA PDF -->
         <div id="invoice-print-area" class="print-only">
             <div style="font-family: Arial, sans-serif; padding: 20px; color: #000;">
                 <h1 style="color: #6d28d9; margin-bottom: 5px;">StringWeb</h1>
@@ -138,6 +151,13 @@
                 <p style="margin-top: 40px; font-size: 12px; color: #777; text-align: center;">Gracias por confiar en StringWeb. Contacto: 3108111774</p>
             </div>
         </div>
+
+        <footer class="site-footer">
+            <div class="container footer-bottom"><span>© <span id="year"></span> StringWeb</span><span>Catálogo Cyber Violet</span></div>
+        </footer>
+
+        <a class="floating-whatsapp" href="https://wa.me/573108111774?text=Hola%20StringWeb,%20estoy%20viendo%20el%20catálogo." target="_blank" aria-label="WhatsApp">WA</a>
+    </div>
 
     <script src="script.js"></script>
 </body>
