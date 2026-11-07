@@ -7,12 +7,25 @@ const STRINGWEB_CONFIG = {
 // Año en footer
 document.getElementById("year") && (document.getElementById("year").textContent = new Date().getFullYear());
 
-// Menú Hamburguesa Móvil
-const menuToggle = document.querySelector(".menu-toggle");
-const nav = document.querySelector(".main-nav");
-menuToggle?.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
+/* --- MENÚ HAMBURGUESA MÓVIL DEFINITIVO --- */
+document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const mainNav = document.getElementById("main-nav");
+
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener("click", () => {
+            const isOpen = mainNav.classList.toggle("open");
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        // Cierra el menú automáticamente al hacer clic en cualquier opción de navegación
+        mainNav.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                mainNav.classList.remove("open");
+                menuToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+    }
 });
 
 // Animaciones Reveal al hacer scroll

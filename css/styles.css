@@ -72,8 +72,8 @@ button { border: 0; }
 .theme-toggle { background: var(--surface-soft); border: 1px solid var(--line); color: var(--ink); padding: 8px 12px; border-radius: 10px; cursor: pointer; font-size: 0.85rem; font-weight: 700; transition: var(--shadow); }
 .theme-toggle:hover { border-color: var(--primary); }
 
-.menu-toggle { display: none; width: 42px; height: 42px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); cursor: pointer; }
-.menu-toggle span { display: block; width: 18px; height: 2px; margin: 4px auto; background: var(--ink); border-radius: 99px; }
+.menu-toggle { display: none; width: 42px; height: 42px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
+.menu-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 99px; }
 
 /* HERO & PARTÍCULAS */
 .hero { overflow: hidden; padding-top: 88px; position: relative; }
@@ -226,6 +226,7 @@ h1 span { color: var(--primary); }
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 .reveal-delay { transition-delay: .08s; } .reveal-delay-2 { transition-delay: .14s; } .reveal-delay-3 { transition-delay: .2s; }
+
 /* --- ESTILOS DE LA GALERÍA --- */
 .gallery-grid {
     display: grid;
@@ -283,4 +284,204 @@ h1 span { color: var(--primary); }
     font-size: 0.85rem;
     color: var(--cyan, #c084fc);
     margin: 0;
+}
+
+/* --- OPTIMIZACIÓN MÓVIL DEFINITIVA (COMPACTO Y LIMPIO) --- */
+@media (max-width: 760px) {
+    .section-pad {
+        padding: 45px 0 !important;
+    }
+
+    .nav-wrap {
+        min-height: 65px;
+    }
+
+    .menu-toggle {
+        display: flex !important;
+    }
+
+    /* Menú desplegable hamburguesa adaptado a .main-nav */
+    .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(15, 12, 24, 0.98);
+        backdrop-filter: blur(14px);
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease-in-out, padding 0.35s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1001;
+    }
+
+    .main-nav.open {
+        max-height: 380px;
+        padding: 24px 0;
+    }
+
+    .hero {
+        padding-top: 30px;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        min-height: auto;
+    }
+
+    h1 {
+        font-size: 2.2rem !important;
+        line-height: 1.1 !important;
+    }
+
+    .hero-visual {
+        display: none !important;
+    }
+
+    .statement-content h2, 
+    .section-heading h2, 
+    .process h2, 
+    .faq-intro h2, 
+    .contact-copy h2 {
+        font-size: 1.8rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .two-col, 
+    .faq-grid, 
+    .section-heading,
+    .contact-panel {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        padding: 30px 18px;
+    }
+
+    .service-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+
+    .field-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-align: center;
+    }
+}
+/* --- CORRECCIÓN DEFINITIVA PARA LA VERSIÓN MÓVIL (MENÚ Y DISEÑO) --- */
+@media (max-width: 760px) {
+    /* Mostramos el botón hamburguesa */
+    .menu-toggle {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        cursor: pointer;
+        z-index: 1002;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: var(--ink);
+        border-radius: 99px;
+        transition: 0.3s;
+    }
+
+    /* Ocultamos el menú principal por defecto en móviles y lo transformamos en panel flotante */
+    .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(15, 7, 22, 0.98);
+        backdrop-filter: blur(16px);
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease-in-out, padding 0.35s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1001;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    /* Clase que despliega el menú al hacer clic en la hamburguesa */
+    .main-nav.open {
+        max-height: 400px;
+        padding: 25px 0;
+    }
+
+    /* Ajustes generales del Hero para evitar espacio muerto */
+    .hero {
+        padding-top: 30px;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        min-height: auto;
+    }
+
+    h1 {
+        font-size: 2.3rem !important;
+        line-height: 1.1 !important;
+    }
+
+    /* Ocultamos el mockup pesado en dispositivos móviles */
+    .hero-visual {
+        display: none !important;
+    }
+
+    .section-pad {
+        padding: 50px 0 !important;
+    }
+
+    .statement-content h2, 
+    .section-heading h2, 
+    .process h2, 
+    .faq-intro h2, 
+    .contact-copy h2 {
+        font-size: 1.85rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .two-col, .faq-grid, .section-heading, .contact-panel {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .service-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+    }
 }
